@@ -1,0 +1,23 @@
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower.localenv.io
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+    networks:
+      default:
+        aliases:
+          - watchtower.localenv.io
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=Europe/Bucharest
+      - WATCHTOWER_POLL_INTERVAL=21600
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+    labels:
+      - com.centurylinklabs.watchtower.enable=true

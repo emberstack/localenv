@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres.localenv.io
+    profiles: [full, postgres]
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 768M
+    environment:
+      POSTGRES_PASSWORD: SuperPass#
+    ports:
+      - 5432:5432
+    networks:
+      default:
+        aliases:
+          - postgres.localenv.io
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
+volumes:
+  postgres_data:

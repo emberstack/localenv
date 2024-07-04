@@ -1,0 +1,27 @@
+services:
+ ngrok:
+    image: "ngrok/ngrok:latest"
+    container_name: ngrok.localenv.io
+    profiles: [full, ngrok]
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+    command:
+      - "http"
+      - "http://host.docker.internal:80"
+    ports:
+      - 4040:4040
+    networks:
+      default:
+        aliases:
+          - ngrok.localenv.io
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ngrok.rule=Host(`ngrok.localenv.io`)"
+      - "traefik.http.routers.ngrok.entrypoints=web"
+      - "traefik.http.services.ngrok.loadbalancer.server.port=4040"
+      - com.centurylinklabs.watchtower.enable=true

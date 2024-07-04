@@ -1,0 +1,33 @@
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    # image: mcr.microsoft.com/azure-sql-edge:latest
+    profiles: [full, mssql]
+    container_name: mssql.localenv.io
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    ports:
+      - "1433:1433"
+    networks:
+      default:
+        aliases:
+          - mssql.localenv.io
+    environment:
+      - ACCEPT_EULA=Y
+      - TZ=Europe/Bucharest
+      - MSSQL_SA_PASSWORD=SuperPass#
+    volumes:
+      - mssql_data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U SA -P $${MSSQL_SA_PASSWORD} -Q 'SELECT @@VERSION'"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+
+volumes:
+  mssql_data:
