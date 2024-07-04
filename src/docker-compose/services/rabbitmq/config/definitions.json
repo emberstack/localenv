@@ -2,15 +2,15 @@
 	"users": [
 		{
 			"name": "admin",
-			"password_hash": "iDnSxN+HTycJhqxJLtEMu+Ea4D2Fvp/AI8MeCRmqitO0FIJr",
+			"password_hash": "7rmMIKY4A4wXVTfI0AJt1kjL4LN2vElhsiml+NFkY/z+IpSX",
 			"hashing_algorithm": "rabbit_password_hashing_sha256",
 			"tags": "administrator"
 		},
 		{
 			"name": "localenv",
-			"password_hash": "xIqOjXpmiZZ67WT1obyFWnIhuN4/6QTnp/x4kT2Hm34LIuV5",
+			"password_hash": "I0XZ4d1GJ7bTTeI+nS0iROlf2ZmUVlYZ01Me+p5NxEen2eRw",
 			"hashing_algorithm": "rabbit_password_hashing_sha256",
-			"tags": "administrator"
+			"tags": ""
 		}
 	],
 	"vhosts": [
