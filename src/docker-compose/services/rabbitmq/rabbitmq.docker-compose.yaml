@@ -1,0 +1,33 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "9sSrGRLmjcTm5dTg"
+      RABBITMQ_HEALTHCHECK_USER: admin
+      RABBITMQ_HEALTHCHECK_PASS: SuperPass#
+    volumes:
+      - ./services/rabbitmq/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./services/rabbitmq/config/definitions.json:/etc/rabbitmq/definitions.json
+      - rabbitmq_data:/var/lib/rabbitmq
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.localenv.io`)"
+      - "traefik.http.routers.rabbitmq.entrypoints=web"
+      - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
+      - com.centurylinklabs.watchtower.enable=true
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  rabbitmq_data:
+

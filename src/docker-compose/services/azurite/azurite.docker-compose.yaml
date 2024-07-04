@@ -1,0 +1,37 @@
+services:
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    container_name: azurite
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    ports:
+      - "10000:10000" # Blob service
+      - "10001:10001" # Queue service
+      - "10002:10002" # Table service
+    volumes:
+      - azurite_data:/data
+    labels:
+      # - "traefik.enable=true"
+      # - "traefik.http.routers.azurite-blob.rule=Host(`blob.azurite.localenv.io`)"
+      # - "traefik.http.routers.azurite-blob.entrypoints=websecure"
+      # - "traefik.http.routers.azurite-blob.service=azurite-blob"
+      # - "traefik.http.services.azurite-blob.loadbalancer.server.port=10000"
+
+      # - "traefik.http.routers.azurite-queue.rule=Host(`queue.azurite.localenv.io`)"
+      # - "traefik.http.routers.azurite-queue.entrypoints=websecure"
+      # - "traefik.http.routers.azurite-queue.service=azurite-queue"
+      # - "traefik.http.services.azurite-queue.loadbalancer.server.port=10001"
+
+      # - "traefik.http.routers.azurite-table.rule=Host(`table.azurite.localenv.io`)"
+      # - "traefik.http.routers.azurite-table.entrypoints=websecure"
+      # - "traefik.http.routers.azurite-table.service=azurite-table"
+      # - "traefik.http.services.azurite-table.loadbalancer.server.port=10002"
+
+      - com.centurylinklabs.watchtower.enable=true
+
+ 
+volumes:
+  azurite_data:

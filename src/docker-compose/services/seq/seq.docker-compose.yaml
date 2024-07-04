@@ -1,0 +1,26 @@
+services:
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5341:5341"
+      - "45341:45341"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.seq.rule=Host(`seq.localenv.io`)"
+      - "traefik.http.routers.seq.entrypoints=web"
+      - "traefik.http.services.seq.loadbalancer.server.port=80"
+      - com.centurylinklabs.watchtower.enable=true
+    volumes:
+      - seq_data:/data
+
+
+volumes: 
+  seq_data:

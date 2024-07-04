@@ -1,0 +1,29 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 768M
+    command: >
+      redis-server
+      --maxmemory 512mb
+      --maxmemory-policy allkeys-lru
+      --save 60 1
+      --appendonly no
+      --loglevel notice
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  redis_data:
