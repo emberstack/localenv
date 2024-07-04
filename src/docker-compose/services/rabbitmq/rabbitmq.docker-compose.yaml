@@ -1,7 +1,7 @@
 services:
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
+    container_name: rabbitmq.localenv.io
     restart: unless-stopped
     deploy:
       resources:
@@ -11,6 +11,13 @@ services:
       RABBITMQ_ERLANG_COOKIE: "9sSrGRLmjcTm5dTg"
       RABBITMQ_HEALTHCHECK_USER: admin
       RABBITMQ_HEALTHCHECK_PASS: SuperPass#
+    ports:
+      - 5672:5672
+      - 5671:5671
+    networks:
+      default:
+        aliases:
+          - rabbitmq.localenv.io
     volumes:
       - ./services/rabbitmq/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./services/rabbitmq/config/definitions.json:/etc/rabbitmq/definitions.json

@@ -1,7 +1,7 @@
 services:
   seq:
     image: datalust/seq:latest
-    container_name: seq
+    container_name: seq.localenv.io
     restart: unless-stopped
     deploy:
       resources:
@@ -12,6 +12,10 @@ services:
     ports:
       - "5341:5341"
       - "45341:45341"
+    networks:
+      default:
+        aliases:
+          - seq.localenv.io
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.seq.rule=Host(`seq.localenv.io`)"
