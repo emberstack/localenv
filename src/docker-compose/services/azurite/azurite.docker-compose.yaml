@@ -3,6 +3,7 @@ services:
     image: mcr.microsoft.com/azure-storage/azurite
     container_name: azurite.localenv.io
     restart: unless-stopped
+    command: 'azurite -l /workspace -d /workspace/debug.log --blobHost azurite.localenv.io  --queueHost azurite.localenv.io --tableHost azurite.localenv.io  --loose --disableProductStyleUrl'
     deploy:
       resources:
         limits:
@@ -16,7 +17,7 @@ services:
         aliases:
           - azurite.localenv.io
     volumes:
-      - azurite_data:/data
+      - azurite_data:/workspace
     labels:
       # - "traefik.enable=true"
       # - "traefik.http.routers.azurite-blob.rule=Host(`blob.azurite.localenv.io`)"
