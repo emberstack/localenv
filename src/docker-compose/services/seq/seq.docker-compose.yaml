@@ -13,6 +13,7 @@ services:
     ports:
       - "5341:5341"
       - "45341:45341"
+      - "5342:80"
     networks:
       default:
         aliases:
