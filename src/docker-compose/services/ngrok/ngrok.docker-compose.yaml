@@ -9,10 +9,13 @@ services:
         limits:
           memory: 128M
     environment:
-      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+      NGROK_AUTHTOKEN: "${NGROK_AUTHTOKEN}"
+      NGROK_URL: "${NGROK_URL:-}"
     command:
       - "http"
       - "http://host.docker.internal:80"
+      - "--url"
+      - "${NGROK_URL:-}"
     ports:
       - 4040:4040
     networks:
