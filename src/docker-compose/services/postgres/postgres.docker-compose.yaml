@@ -10,6 +10,7 @@ services:
           memory: 768M
     environment:
       POSTGRES_PASSWORD: SuperPass#
+    command: -c 'max_connections=500'
     ports:
       - 5432:5432
     networks:
