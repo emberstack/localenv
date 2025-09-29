@@ -10,6 +10,7 @@ services:
           memory: 512M
     environment:
       - ACCEPT_EULA=Y
+      - SEQ_FIRSTRUN_ADMINPASSWORD=SuperPass#
     ports:
       - "5341:5341"
       - "45341:45341"
