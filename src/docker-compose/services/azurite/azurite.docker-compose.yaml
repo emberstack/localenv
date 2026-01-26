@@ -4,7 +4,7 @@ services:
     container_name: azurite.localenv.io
     profiles: [full, azurite]
     restart: unless-stopped
-    command: 'azurite -l /data -d /data/debug.log --blobHost azurite.localenv.io  --queueHost azurite.localenv.io --tableHost azurite.localenv.io  --loose --disableProductStyleUrl'
+    command: 'azurite -l /data -d /data/debug.log --blobHost azurite.localenv.io  --queueHost azurite.localenv.io --tableHost azurite.localenv.io  --loose --disableProductStyleUrl --skipApiVersionCheck'
     deploy:
       resources:
         limits:
