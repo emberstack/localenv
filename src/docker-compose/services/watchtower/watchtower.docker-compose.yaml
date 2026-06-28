@@ -1,6 +1,6 @@
 services:
   watchtower:
-    image: containrrr/watchtower
+    image: ghcr.io/nicholas-fedor/watchtower:latest
     container_name: watchtower.localenv.io
     restart: unless-stopped
     deploy:
@@ -19,5 +19,6 @@ services:
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_LABEL_ENABLE=true
       - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_EPHEMERAL_SELF_UPDATE=true
     labels:
       - com.centurylinklabs.watchtower.enable=true
