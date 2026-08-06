@@ -2,6 +2,7 @@ services:
   openobserve:
     image: openobserve/openobserve:latest
     container_name: openobserve.localenv.io
+    profiles: [full, openobserve]
     restart: unless-stopped
     deploy:
       resources:
