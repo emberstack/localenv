@@ -2,7 +2,6 @@ services:
   openobserve:
     image: openobserve/openobserve:latest
     container_name: openobserve.localenv.io
-    profiles: [full, openobserve]
     restart: unless-stopped
     deploy:
       resources:
@@ -24,7 +23,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.openobserve.rule=Host(`openobserve.localenv.io`)"
       - "traefik.http.routers.openobserve.entrypoints=web"
-      - "traefik.http.services.openobserve.loadbalancer.server.port=80"
+      - "traefik.http.services.openobserve.loadbalancer.server.port=5080"
       - com.centurylinklabs.watchtower.enable=true
     volumes:
       - openobserve_data:/data
