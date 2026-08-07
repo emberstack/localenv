@@ -11,7 +11,7 @@ services:
     environment:
       RABBITMQ_ERLANG_COOKIE: "9sSrGRLmjcTm5dTg"
       RABBITMQ_HEALTHCHECK_USER: admin
-      RABBITMQ_HEALTHCHECK_PASS: SuperPass#
+      RABBITMQ_HEALTHCHECK_PASS: SuperPass123#
     ports:
       - 5672:5672
       - 5671:5671

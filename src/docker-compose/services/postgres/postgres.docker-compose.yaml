@@ -9,7 +9,7 @@ services:
         limits:
           memory: 768M
     environment:
-      POSTGRES_PASSWORD: SuperPass#
+      POSTGRES_PASSWORD: SuperPass123#
     command: -c 'max_connections=500'
     ports:
       - 5432:5432
@@ -39,7 +39,7 @@ services:
           memory: 768M
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@localenv.io
-      PGADMIN_DEFAULT_PASSWORD: SuperPass#
+      PGADMIN_DEFAULT_PASSWORD: SuperPass123#
     networks:
       default:
         aliases:

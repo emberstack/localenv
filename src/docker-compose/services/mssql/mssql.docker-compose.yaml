@@ -18,7 +18,7 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - TZ=Europe/Bucharest
-      - MSSQL_SA_PASSWORD=SuperPass#
+      - MSSQL_SA_PASSWORD=SuperPass123#
     volumes:
       - mssql_data:/var/opt/mssql
     healthcheck:
