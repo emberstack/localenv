@@ -11,7 +11,7 @@ services:
     environment:
       - ZO_TELEMETRY=false
       - ZO_ROOT_USER_EMAIL=admin@localenv.io
-      - ZO_ROOT_USER_PASSWORD=SuperPass1#
+      - ZO_ROOT_USER_PASSWORD=SuperPass123#
       - ZO_DATA_DIR=/data
     ports:
       - "5080:5080"

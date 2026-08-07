@@ -3,7 +3,7 @@
 Default users:
 - `admin`
     - tags: administrator
-    - password: `SuperPass#`
+    - password: `SuperPass123#`
 - `localenv`
     - tags: -
     - password: `localenv`
