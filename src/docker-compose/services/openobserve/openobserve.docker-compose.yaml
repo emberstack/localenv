@@ -13,10 +13,9 @@ services:
       - ZO_ROOT_USER_EMAIL=admin@localenv.io
       - ZO_ROOT_USER_PASSWORD=SuperPass123#
       - ZO_DATA_DIR=/data
-        # Browser telemetry (OTLP logs / RUM) is posted cross-origin from the dev servers,
+      # Browser telemetry (OTLP logs / RUM) is posted cross-origin from the dev servers,
       # so OpenObserve must echo Access-Control-Allow-Origin for those origins.
       - ZO_CORS_ALLOWED_ORIGINS=http://localhost:4200,http://127.0.0.1:4200,http://localhost:8100,http://127.0.0.1:8100,http://localhost,capacitor://localhost,ionic://localhost
-
     ports:
       - "5080:5080"
       - "5081:5081"
