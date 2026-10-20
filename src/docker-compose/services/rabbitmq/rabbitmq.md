@@ -17,6 +17,12 @@ Default vhosts:
         - admin
         - localenv
 
+## Plugins
+
+Enabled via `config/enabled_plugins` (mounted over the image default, so `rabbitmq_management` must stay in the list):
+- `rabbitmq_management` + `rabbitmq_prometheus` (image defaults)
+- `rabbitmq_shovel` + `rabbitmq_shovel_management` - move/replay messages between queues (e.g. from a `*_error` queue back to its endpoint queue). Create dynamic shovels under `Admin > Shovel Management`; status under `Admin > Shovel Status`.
+
 ## Utilities
 
 #### Generating a new password hash

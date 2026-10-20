@@ -22,6 +22,7 @@ services:
     volumes:
       - ./services/rabbitmq/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./services/rabbitmq/config/definitions.json:/etc/rabbitmq/definitions.json
+      - ./services/rabbitmq/config/enabled_plugins:/etc/rabbitmq/enabled_plugins
       - rabbitmq_data:/var/lib/rabbitmq
     labels:
       - "traefik.enable=true"
